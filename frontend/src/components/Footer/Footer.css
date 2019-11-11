@@ -1,0 +1,22 @@
+/*=-footer-=*/
+footer {
+  color: #ccc;
+  background-attachment: fixed;
+  background-color: #222;
+  background-size: cover;
+  background-position: bottom;
+}
+footer p {
+  color: #ccc;
+}
+footer a {
+  color: #ccc;
+}
+footer a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.social-icon {
+  width: 40px;
+  margin-top: -75px;
+}

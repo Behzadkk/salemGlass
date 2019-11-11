@@ -1,0 +1,22 @@
+.banner {
+  height: 55vh;
+  max-height: 35rem;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.banner h1 {
+  position: relative;
+  display: inline-block;
+  top: 18rem;
+  padding: 1rem 3rem;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.product-tabs {
+  border: solid 1px #dee2e6;
+  border-top: 0;
+  padding: 1rem;
+}

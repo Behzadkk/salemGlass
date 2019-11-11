@@ -1,0 +1,46 @@
+body {
+  font-family: "apercu", sans-serif;
+}
+.height-inherit {
+  height: inherit;
+}
+.my-banner {
+  max-height: 35rem;
+}
+
+.detail-photo {
+  max-width: 10rem;
+}
+
+.side-image {
+  width: 4rem;
+}
+
+.file-input {
+  visibility: visible !important;
+  border: 0;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+a:hover {
+  text-decoration: none;
+  color: #272727;
+}
+
+.drawing-table .category:nth-child(odd) {
+  background-color: #e7e7e9;
+}
+
+.drawing-table .category:nth-child(even) {
+  background-color: #d6d6d7;
+}
+.drawingPage {
+  margin-bottom: -40px;
+}
+
+.selector-container {
+  height: 25rem;
+  overflow: auto;
+}

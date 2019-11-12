@@ -4,7 +4,7 @@ const { putReqHandler } = require("../helper/putReqHandler");
 
 // Show all products// Index
 exports.getAllProduct = (req, res) => {
-  const sql = "SELECT * FROM products";
+  const sql = "SELECT * FROM products ORDER BY subCat";
   db.all(sql, [], (err, rows) => {
     if (err) {
       console.log("ERROR fetching from the database:", err);

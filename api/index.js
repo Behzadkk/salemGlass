@@ -21,6 +21,7 @@ router.post("/gallery", photoController.uploadPhotos);
 router.put("/gallery/:id", photoController.editAPhoto);
 router.delete("/gallery", photoController.deleteAPhoto);
 router.delete("/photos/projects/:source", photoController.deleteAProjectPhoto);
+router.put("/photos/reorder", photoController.reorderPhotos);
 
 router.get("/drawings", drawingController.getAllDrawings);
 router.post("/drawings", drawingController.uploadADrawing);

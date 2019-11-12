@@ -43,51 +43,51 @@ class Footer extends Component {
     return (
       <div>
         {!this.state.isLoading && (
-          <MDBFooter className="font-small pt-4 mt-4">
-            <MDBContainer fluid className="container text-center text-md-left">
+          <MDBFooter className='font-small pt-4 mt-4'>
+            <MDBContainer fluid className='container text-center text-md-left'>
               <MDBRow>
                 <FooterMenu data={this.state.data[0]} />
                 <FooterMenu data={this.state.data[1]} />
                 <FooterMenu data={this.state.data[2]} />
-                <MDBCol md="3" sm="6" className="text-left">
+                <MDBCol md='3' sm='6' className='text-left'>
                   <ContactInfo data={this.state.data[3]} />
                 </MDBCol>
               </MDBRow>
 
-              <hr className="border-secondary" />
+              <hr className='border-secondary' />
             </MDBContainer>
-            <div className="footer-copyright text-center py-3">
+            <div className='footer-copyright text-center py-3'>
               <MDBContainer fluid>
                 &copy; {new Date().getFullYear()} Copyright:{" "}
-                <a href="/">{this.state.data[4].groupName}</a>
+                <a href='/'>{this.state.data[4].groupName}</a>
               </MDBContainer>
-              <div className="container d-flex justify-content-end">
-                <nav className="navbar navbar-light col-3">
-                  <ul className="navbar-nav mr-auto flex-row">
-                    <li className="nav-item mx-3">
-                      <a className="nav-link" href={this.state.data[4].link1}>
+              <div className='container d-lg-flex justify-content-end'>
+                <nav className='navbar navbar-light col-lg-3'>
+                  <ul className='navbar-nav margin-0-auto flex-row '>
+                    <li className='nav-item mx-3'>
+                      <a className='nav-link' href={this.state.data[4].link1}>
                         <img
-                          src="/images/youtube.png"
-                          alt="social media"
-                          className="social-icon"
+                          src='/images/youtube.png'
+                          alt='social media'
+                          className='social-icon'
                         />
                       </a>
                     </li>
-                    <li className="nav-item mx-3">
-                      <a className="nav-link" href={this.state.data[4].link2}>
+                    <li className='nav-item mx-3'>
+                      <a className='nav-link' href={this.state.data[4].link2}>
                         <img
-                          src="/images/insta.png"
-                          alt="social media"
-                          className="social-icon"
+                          src='/images/insta.png'
+                          alt='social media'
+                          className='social-icon'
                         />
                       </a>
                     </li>
-                    <li className="nav-item mx-3">
-                      <a className="nav-link" href={this.state.data[4].link3}>
+                    <li className='nav-item mx-3'>
+                      <a className='nav-link' href={this.state.data[4].link3}>
                         <img
-                          src="/images/google.png"
-                          alt="social media"
-                          className="social-icon"
+                          src='/images/google.png'
+                          alt='social media'
+                          className='social-icon'
                         />
                       </a>
                     </li>
@@ -96,9 +96,9 @@ class Footer extends Component {
               </div>
             </div>
             {this.context.token && (
-              <div className="container">
+              <div className='container'>
                 <button
-                  className="btn btn-sm btn-warning"
+                  className='btn btn-sm btn-warning'
                   onClick={this.editingPage}
                 >
                   Edit footer

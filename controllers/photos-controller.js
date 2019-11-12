@@ -4,7 +4,7 @@ const { postReqQuery, postValuesHandler } = require("../helper/postReqHandler");
 // Show all photos// Index
 exports.getAllPhotos = (req, res) => {
   const sql =
-    "SELECT * FROM photos JOIN products ON products.prodId = photos.categoryId ";
+    "SELECT * FROM photos JOIN products ON products.prodId = photos.categoryId ORDER BY priority";
   db.all(sql, [], (err, rows) => {
     if (err) {
       console.log("ERROR fetching from the database:", err);
@@ -20,7 +20,7 @@ exports.getAllPhotos = (req, res) => {
 exports.getPhotos = (req, res) => {
   const productType = req.params.productType;
   const sql =
-    "SELECT photos.* FROM photos JOIN products ON products.prodId = photos.categoryId WHERE products.subCat = ?";
+    "SELECT photos.* FROM photos JOIN products ON products.prodId = photos.categoryId WHERE products.subCat = ? ORDER BY priority";
   db.all(sql, [productType], (err, rows) => {
     if (err) {
       console.log("ERROR fetching from the database:", err);
@@ -65,7 +65,6 @@ exports.editAPhoto = (req, res) => {
   const id = req.params.id;
   const sql = `UPDATE photos SET categoryId = ${editingPhoto.categoryId ||
     0}, projectId = ${editingPhoto.projectId || 0} WHERE photoId = ?`;
-  console.log(sql);
   db.run(sql, [id], function(err, rows) {
     if (err) {
       console.log("ERROR fetching from the database:", err);
@@ -104,5 +103,27 @@ exports.deleteAProjectPhoto = (req, res) => {
       return;
     }
     res.sendStatus(200);
+  });
+};
+
+exports.reorderPhotos = (req, res) => {
+  let pool = "(";
+  let sql = "UPDATE photos SET priority = (CASE ";
+  req.body.photos.map((photo, i) => {
+    sql += `WHEN (source = "${photo}") THEN ${i + 1} `;
+    pool += `"${photo}", `;
+  });
+  pool += "'' )";
+  sql += `ELSE (priority) 
+END)
+WHERE source IN ${pool}`;
+  db.run(sql, [], function(err, rows) {
+    if (err) {
+      console.log("ERROR fetching from the database:", err);
+      return;
+    }
+    res.status(200).json({
+      photos: rows
+    });
   });
 };

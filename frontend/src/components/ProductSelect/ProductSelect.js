@@ -29,18 +29,18 @@ class ProductSelect extends React.Component {
     const { selectedOption } = this.state;
 
     return (
-      <div className="form-group row justify-content-between">
-        <label className="my-2 mx-3" htmlFor="selector">
+      <div className='form-group row justify-content-between'>
+        <label className='my-2 mx-3' htmlFor='selector'>
           Select related products
         </label>
-        <div className="col-sm-9">
+        <div className='col-sm-9'>
           {!this.state.isLoading && (
             <Select
               value={selectedOption}
               onChange={this.handleChange}
               options={this.state.categories}
               isMulti
-              placeholder="Select related products"
+              placeholder='Select related products'
             />
           )}
         </div>

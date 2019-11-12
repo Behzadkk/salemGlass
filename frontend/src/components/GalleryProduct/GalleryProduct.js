@@ -134,19 +134,19 @@ class GalleryProduct extends Component {
 
   render() {
     return (
-      <div className="gallery-container">
-        <h2 className="display-4 text-center m-5">
+      <div className='gallery-container container'>
+        <h2 className='display-4 text-center m-5'>
           {this.captialize(this.props.match.params.product)}
         </h2>
         {this.state.isLoading ? (
           <Spinner />
         ) : (
           <React.Fragment>
-            <div className="gallery-grid">
+            <div className='gallery-grid'>
               {this.state.images.map(this.renderImageContent)}
             </div>
             {!this.state.LoadingVideos && (
-              <div className="container">
+              <div className='container'>
                 <ProjVideos
                   videos={this.state.videos}
                   videosHeading={this.state.product.videoHeading}
@@ -201,12 +201,12 @@ class GalleryModal extends Component {
     }
     return (
       <div>
-        <div className="modal-overlay" onClick={closeModal}></div>
-        <div className="modal container">
-          <div className="modal-body">
+        <div className='modal-overlay' onClick={closeModal}></div>
+        <div className='modal container'>
+          <div className='modal-body'>
             <a
-              href="close"
-              className="modal-close"
+              href='close'
+              className='modal-close'
               onClick={closeModal}
               onKeyDown={this.handleKeyDown}
             >
@@ -214,8 +214,8 @@ class GalleryModal extends Component {
             </a>
             {hasPrev && (
               <a
-                href="previous"
-                className="modal-prev"
+                href='previous'
+                className='modal-prev'
                 onClick={findPrev}
                 onKeyDown={this.handleKeyDown}
               >
@@ -224,8 +224,8 @@ class GalleryModal extends Component {
             )}
             {hasNext && (
               <a
-                href="next"
-                className="modal-next"
+                href='next'
+                className='modal-next'
                 onClick={findNext}
                 onKeyDown={this.handleKeyDown}
               >
@@ -233,16 +233,16 @@ class GalleryModal extends Component {
               </a>
             )}
             {this.context.token && (
-              <div className="container">
+              <div className='container'>
                 <button
-                  className="btn btn-sm btn-danger"
+                  className='btn btn-sm btn-danger'
                   onClick={() => this.props.deletePhoto(src)}
                 >
                   Delete
                 </button>
               </div>
             )}
-            <img src={src} alt={src} />
+            <img className='' src={src} alt={src} />
           </div>
         </div>
       </div>

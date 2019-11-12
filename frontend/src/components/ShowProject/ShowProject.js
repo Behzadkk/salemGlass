@@ -124,7 +124,6 @@ class ShowProject extends Component {
       shortDescription
     };
     const token = this.context.token;
-    console.log(requestBody);
 
     fetch(`/api/projects/${this.state.projects.projId}`, {
       method: "PUT",
@@ -174,6 +173,7 @@ class ShowProject extends Component {
         console.log(err);
       });
   };
+
   render() {
     return (
       <div className='container'>
@@ -237,10 +237,7 @@ class ShowProject extends Component {
           />
         )}
         {this.state.editingPhotos && (
-          <PhotoHandler
-            photos={this.state.images}
-            deletHandler={this.deletImageHandler}
-          />
+          <PhotoHandler photos={this.state.images} />
         )}
         {this.state.deleted && <Redirect to='/projects' exact />}
       </div>

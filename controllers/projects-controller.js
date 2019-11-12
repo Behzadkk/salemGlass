@@ -2,7 +2,7 @@ const db = require("../helper/sqlDB").createDB();
 const { postReqQuery, postValuesHandler } = require("../helper/postReqHandler");
 // Show all projects// Index
 exports.getAllProjects = (req, res) => {
-  const sql = "SELECT * FROM Projects";
+  const sql = "SELECT * FROM Projects ORDER BY name";
   db.all(sql, [], (err, rows) => {
     if (err) {
       console.log("ERROR fetching from the database:", err);
@@ -39,7 +39,7 @@ exports.showAProject = (req, res) => {
       return;
     } else {
       projects = [...rows];
-      const sql = `SELECT * FROM photos WHERE projectId=${rows[0].projId}`;
+      const sql = `SELECT * FROM photos WHERE projectId=${rows[0].projId} ORDER BY priority`;
       db.all(sql, [], (err, photos) => {
         if (err) {
           console.log("ERROR fetching from the database:", err);
@@ -92,7 +92,6 @@ exports.editAProject = (req, res) => {
     sql += "videos = NULL";
   }
   sql += ` WHERE projId = ?`;
-  console.log(sql);
   db.run(sql, [id], function(err, rows) {
     if (err) {
       console.log("ERROR fetching from the database:", err);
@@ -134,6 +133,7 @@ relateProducts = (id, products) => {
     return str;
   });
   sql += values.join(", ");
+  console.log(sql);
   db.run(sql, [], function(err, rows) {
     if (err) {
       console.log("ERROR fetching from the database:", err);
@@ -147,6 +147,7 @@ relateProducts = (id, products) => {
 updateProduct = productsList => {
   const products = productsList.join(", ");
   let sql = `UPDATE products set projects = 1 WHERE prodId in (${products})`;
+  console.log(sql);
   db.run(sql, [], function(err, rows) {
     if (err) {
       console.log("ERROR fetching from the database:", err);

@@ -20,3 +20,11 @@ footer a:hover {
   width: 40px;
   margin-top: -75px;
 }
+.margin-0-auto {
+  margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+  .social-icon {
+    margin-top: 0;
+  }
+}

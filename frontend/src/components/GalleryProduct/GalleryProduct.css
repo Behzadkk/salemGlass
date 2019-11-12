@@ -1,6 +1,3 @@
-.gallery-container {
-  padding: 0.9375rem 0;
-}
 .gallery-container h1 {
   margin: 2rem 0;
   padding: 0;
@@ -12,15 +9,14 @@
 }
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0.3rem;
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
 }
 .gallery-grid img {
   width: 100%;
-  border: 5px solid #fff;
 }
 .gallery-grid div {
   position: relative;
@@ -32,7 +28,7 @@
   opacity: 0;
 }
 .gallery-grid div:after {
-  content: "\02194";
+  content: "";
   font-size: 80px;
   position: absolute;
   transform: translate3d(-50%, -50%, 0) rotate(-45deg);
@@ -48,7 +44,7 @@
   bottom: 4px;
   left: 0;
   right: 0;
-  background: rgba(34, 34, 34, 0.5);
+  background: rgba(34, 34, 34, 0.25);
   display: block;
 }
 .gallery-grid div:hover:before,
@@ -68,7 +64,7 @@
 .modal img {
   width: 100%;
   border: 5px solid #fff;
-  max-height: 90vh;
+  max-height: 85vh;
 }
 .modal-overlay {
   position: fixed;
@@ -115,4 +111,14 @@
 }
 .modal-body {
   position: relative;
+}
+
+@media screen and (min-width: 769px) {
+  .modal {
+    width: auto;
+  }
+  .modal img {
+    width: unset;
+    max-width: 100%;
+  }
 }

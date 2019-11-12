@@ -7,26 +7,35 @@ const DropDown = props => {
       <NavLink
         key={i}
         to={"/products/" + product.subCat}
-        className="dropdown-item"
+        className={
+          props.products.length > 11 ? "dropdown-item col-6" : "dropdown-item"
+        }
       >
         {product.name}
       </NavLink>
     );
   });
   return (
-    <li className="nav-item dropdown">
+    <li className='nav-item dropdown'>
       <NavLink
-        className="nav-link dropdown-toggle"
-        id="dropdown01"
+        className='nav-link dropdown-toggle'
+        id='dropdown01'
         to={props.link ? "/category/" + props.link : "/category/" + props.name}
       >
         {props.name}
       </NavLink>
+
       <div
-        className="dropdown-menu dropdown-content m-0 p-0"
+        className='dropdown-menu dropdown-content m-0 p-0'
         onClick={props.clickHandler}
       >
-        {navItems}
+        <div
+          className={
+            props.products.length > 11 ? "dropdown__column" : undefined
+          }
+        >
+          {navItems}
+        </div>
       </div>
     </li>
   );

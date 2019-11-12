@@ -153,3 +153,13 @@ body {
 .lh-150 {
   line-height: 1.5;
 }
+
+@media screen and (min-width: 769px) {
+  .dropdown__column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 60vh;
+    width: 35rem;
+  }
+}

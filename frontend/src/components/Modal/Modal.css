@@ -1,4 +1,4 @@
-.modals {
+.modals-d {
   width: 90%;
   background: #fff;
   box-shadow: 0 2px rgba(0, 0, 0, 0.25);
@@ -6,16 +6,17 @@
   top: 10vh;
   left: 5%;
   overflow-y: auto;
-  height: 80vh;
+  height: 50vh;
   background: rgb(255, 255, 255);
+  z-index: 21;
 }
 
 .modal__contents {
-  padding: 1rem;
+  padding: 5rem 1rem;
 }
 
 @media only screen and (min-width: 768px) {
-  .modals {
+  .modals-d {
     width: 30rem;
     left: calc((100% - 30rem) / 2);
   }

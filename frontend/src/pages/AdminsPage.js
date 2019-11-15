@@ -46,6 +46,11 @@ class AdminsPage extends Component {
     e.preventDefault();
     const token = this.context.token;
     const name = this.subCatEl.current.value;
+    if (name.length < 3) {
+      return alert(
+        "Please insert at least 3 characters for the name of the new product"
+      );
+    }
     const category = this.groupEl.current.value;
     const description = this.state.productDetails;
     const product = { name, category, description };
@@ -72,6 +77,11 @@ class AdminsPage extends Component {
   confirmProject = e => {
     e.preventDefault();
     const name = this.projectEl.current.value;
+    if (name.length < 3) {
+      return alert(
+        "Please insert at least 3 characters for the name of the new project"
+      );
+    }
     const description = this.state.projectDetails;
     const token = this.context.token;
     const requestBody = { name, description };

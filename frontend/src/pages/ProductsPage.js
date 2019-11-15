@@ -5,6 +5,8 @@ import EditProduct from "../components/EditProduct/EditProduct";
 import AuthContext from "../context/authContext";
 import { Redirect } from "react-router-dom";
 import PhotoHandler from "../components/PhotoHandler/PhotoHandler";
+import Modal from "../components/Modal/Modal";
+import Backdrop from "../components/Backdrop/Backdrop";
 
 class ProductsPage extends Component {
   constructor(props) {
@@ -26,7 +28,8 @@ class ProductsPage extends Component {
       images: [],
       LoadingGallery: true,
       videos: null,
-      editingPhotos: false
+      editingPhotos: false,
+      deleting: false
     };
     this.subCatEl = React.createRef();
     this.groupEl = React.createRef();
@@ -179,6 +182,12 @@ class ProductsPage extends Component {
       return { editingPhotos: !prevState.editingPhotos };
     });
   };
+  startDeleteProduct = () => {
+    this.setState({ deleting: true });
+  };
+  closeModal = () => {
+    this.setState({ deleting: false });
+  };
   deletImageHandler = image => {
     const source = image.substring(7);
     const token = this.context.token;
@@ -224,7 +233,7 @@ class ProductsPage extends Component {
             </button>
             <button
               className="btn btn-sm btn-danger"
-              onClick={this.deleteProductHandler}
+              onClick={this.startDeleteProduct}
             >
               Delete
             </button>
@@ -255,6 +264,32 @@ class ProductsPage extends Component {
               photos={this.state.images}
               deletHandler={this.deletImageHandler}
             />
+          </div>
+        )}
+        {this.state.deleting && (
+          <div>
+            <Backdrop />
+            <Modal>
+              Are you sure about{" "}
+              <span className="text-danger">
+                Deleting {this.state.product.name}{" "}
+              </span>
+              and all its dependents?
+              <div>
+                <button
+                  className="btn btn-danger m-2"
+                  onClick={this.deleteProductHandler}
+                >
+                  Yes Delete it
+                </button>
+                <button
+                  className="btn btn-secondary m-2"
+                  onClick={this.closeModal}
+                >
+                  No, I changed my mind
+                </button>
+              </div>
+            </Modal>
           </div>
         )}
         {this.state.deleted && <Redirect to="/" exact />}

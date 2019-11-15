@@ -14,6 +14,12 @@ class PhotoHandler extends Component {
     photos.splice(index - num, 0, photos.splice(index, 1)[0]);
     this.setState({ photos: photos });
   };
+  firstPhotoHandler = photo => {
+    const photos = this.state.photos;
+    let index = photos.findIndex(p => p.original === photo);
+    photos.splice(0, 0, photos.splice(index, 1)[0]);
+    this.setState({ photos: photos });
+  };
   backHandler = (photo, num) => {
     const photos = this.state.photos;
     let index = photos.findIndex(p => p.original === photo);
@@ -65,42 +71,42 @@ class PhotoHandler extends Component {
 
   render() {
     return (
-      <div className='card-deck'>
+      <div className="card-deck ">
         {this.state.photos.map((photo, i) => (
-          <div key={i} className='col-3'>
-            <div className='card my-2'>
+          <div key={i} className="col-3">
+            <div className="card my-2">
               <img
                 src={photo.original}
-                className='card-img-top'
+                className="card-img-top"
                 alt={photo.original}
               />
-              <div className='card-body d-flex'>
-                {i > 9 && (
+              <div className="card-body d-flex justify-content-center">
+                {i !== 0 && (
                   <button
-                    className='btn btn-secondary'
-                    onClick={() => this.frontHandler(photo.original, 10)}
+                    className="btn btn-secondary"
+                    onClick={() => this.firstPhotoHandler(photo.original)}
                   >
-                    {"<10"}
+                    {"<1st"}
                   </button>
                 )}
 
                 {i !== 0 && (
                   <button
-                    className='btn btn-secondary'
+                    className="btn btn-secondary"
                     onClick={() => this.frontHandler(photo.original, 1)}
                   >
                     {"<"}
                   </button>
                 )}
                 <button
-                  className='btn btn-danger'
+                  className="btn btn-danger"
                   onClick={() => this.deletImageHandler(photo.original)}
                 >
                   Delete Photo
                 </button>
                 {i !== this.state.photos.length - 1 && (
                   <button
-                    className='btn btn-secondary'
+                    className="btn btn-secondary"
                     onClick={() => this.backHandler(photo.original, 1)}
                   >
                     {">"}
@@ -108,7 +114,7 @@ class PhotoHandler extends Component {
                 )}
                 {i < this.state.photos.length - 10 && (
                   <button
-                    className='btn btn-secondary'
+                    className="btn btn-secondary"
                     onClick={() => this.backHandler(photo.original, 10)}
                   >
                     {"10>"}
@@ -119,12 +125,12 @@ class PhotoHandler extends Component {
           </div>
         ))}
         <button
-          className='btn btn-primary btn-lg btn-block'
+          className="btn btn-primary btn-lg btn-block"
           onClick={this.submitHandler}
         >
           Submit Photos Order
         </button>
-        {this.state.ordered && <Redirect to='/' exact />}
+        {this.state.ordered && <Redirect to="/" exact />}
       </div>
     );
   }

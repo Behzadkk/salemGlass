@@ -7,6 +7,8 @@ import AuthContext from "../../context/authContext";
 import Spinner from "../Spinner/Spinner";
 import ProjVideos from "../Featurette/ProjVideos/ProjVideos";
 import PhotoHandler from "../PhotoHandler/PhotoHandler";
+import Backdrop from "../Backdrop/Backdrop";
+import Modal from "../Modal/Modal";
 class ShowProject extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,8 @@ class ShowProject extends Component {
       projDesc: "",
       deleted: false,
       images: null,
-      shortDescription: null
+      shortDescription: null,
+      deleting: false
     };
   }
   static contextType = AuthContext;
@@ -144,7 +147,12 @@ class ShowProject extends Component {
       });
     this.setState({ isEditing: false });
   };
-
+  startDeleteProject = () => {
+    this.setState({ deleting: true });
+  };
+  closeModal = () => {
+    this.setState({ deleting: false });
+  };
   deleteProjectHandler = () => {
     const id = this.state.projects.projId;
     const token = this.context.token;
@@ -176,47 +184,46 @@ class ShowProject extends Component {
 
   render() {
     return (
-      <div className='container'>
+      <div className="container">
         {this.state.isLoading ? (
           <Spinner />
         ) : (
           <div>
-            <h3 className='text-center m-5'>{this.state.projects.name}</h3>
-            <div className='row'>
-              <div className='col-md-9'>
-                <div className='my-5'>
+            <h3 className="text-center m-5">{this.state.projects.name}</h3>
+            <div className="row">
+              <div className="col-md-9">
+                <div className="my-5">
                   <Markup content={this.state.projects.description} />
                 </div>
               </div>
             </div>
-            <div className='check'>
+            <div className="check">
               <ProductGallery photos={this.state.images} />
             </div>
             {this.state.videos && (
-              <div className='container'>
+              <div className="container">
                 <ProjVideos videos={this.state.videos} />
               </div>
             )}
           </div>
         )}
-
         {this.context.token && (
-          <div className='container'>
+          <div className="container">
             <button
-              className='btn btn-sm btn-warning'
+              className="btn btn-sm btn-warning"
               onClick={this.editingProject}
             >
               Edit
             </button>
             <button
-              className='btn btn-sm btn-success'
+              className="btn btn-sm btn-success"
               onClick={this.editingPhotos}
             >
               Manage Photos
             </button>
             <button
-              className='btn btn-sm btn-danger'
-              onClick={this.deleteProjectHandler}
+              className="btn btn-sm btn-danger"
+              onClick={this.startDeleteProject}
             >
               Delete
             </button>
@@ -239,7 +246,33 @@ class ShowProject extends Component {
         {this.state.editingPhotos && (
           <PhotoHandler photos={this.state.images} />
         )}
-        {this.state.deleted && <Redirect to='/projects' exact />}
+        {this.state.deleting && (
+          <div>
+            <Backdrop />
+            <Modal>
+              Are you sure about{" "}
+              <span className="text-danger">
+                Deleting {this.state.projects.name}{" "}
+              </span>
+              and all its dependents?
+              <div>
+                <button
+                  className="btn btn-danger m-2"
+                  onClick={this.deleteProjectHandler}
+                >
+                  Yes Delete it
+                </button>
+                <button
+                  className="btn btn-secondary m-2"
+                  onClick={this.closeModal}
+                >
+                  No, I changed my mind
+                </button>
+              </div>
+            </Modal>
+          </div>
+        )}
+        {this.state.deleted && <Redirect to="/projects" exact />}
       </div>
     );
   }

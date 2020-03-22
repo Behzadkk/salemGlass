@@ -62,7 +62,7 @@
   margin: 12px 0;
   color: #ebeeee;
   display: inline-block;
-  float: left;
+  /* float: left; */
   width: 26%;
 }
 #contact input,

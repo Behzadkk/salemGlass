@@ -26,7 +26,7 @@ class Footer extends Component {
       })
       .then(resData => {
         this.setState({ data: resData.footer, isLoading: false });
-        this.props.adminEmail(resData.footer[3].text4);
+        this.props.adminEmail(resData.footer[3].text5);
       })
       .catch(err => {
         console.log(err);
